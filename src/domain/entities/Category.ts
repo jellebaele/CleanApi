@@ -20,10 +20,7 @@ class Category extends Entity<CategoryProps> {
     return this.props.description;
   }
 
-  public static create(
-    props: CategoryProps,
-    id?: UniqueEntityId
-  ): Category | null {
+  public static create(props: CategoryProps, id?: UniqueEntityId): Category {
     const category = new Category(props, id);
     return category;
   }
