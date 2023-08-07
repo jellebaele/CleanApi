@@ -8,8 +8,8 @@ export default class TextUtils {
     return domPurify.sanitize(text);
   }
 
-  public static sanitizeObject(object: object, exclude: string[] = []): object {
-    const sanitizedObject: { [key: string]: any } = {};
+  public static sanitizeObject<T>(object: object, exclude: string[] = []): T {
+    const sanitizedObject: { [key: string]: unknown } = {};
 
     for (const [key, value] of Object.entries(object)) {
       sanitizedObject[key] = exclude.includes(key)
@@ -17,6 +17,6 @@ export default class TextUtils {
         : domPurify.sanitize(value);
     }
 
-    return sanitizedObject;
+    return sanitizedObject as T;
   }
 }
