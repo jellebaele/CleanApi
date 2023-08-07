@@ -4,7 +4,8 @@ import Category, {
 import ICategoryRepository from '../../../../contracts/persistence/ICategoryRepository';
 import TextUtils from '../../../../shared/utils/TextUtils';
 import { CreateCategoryCommand } from './CreateCategoryCommand';
-import { CreateCategoryResultDTO } from './CreateCategoryResultDTO';
+import { createCategoryCommandValidator } from './CreateCategoryCommandValidator';
+import { CreateCategoryResponse } from './CreateCategoryResultResponse';
 
 // TODO General handler base class
 // TODO General command class
@@ -17,10 +18,21 @@ export class CreateCategoryCommandHandler {
 
   public async handle(
     request: CreateCategoryCommand
-  ): Promise<CreateCategoryResultDTO | null> {
-    console.log(request);
+  ): Promise<CreateCategoryResponse | null> {
+    await createCategoryCommandValidator.validateAsync(request);
+    const categoryProps: CategoryProps =
+      TextUtils.sanitizeObject<CategoryProps>(request);
 
-    const r: CreateCategoryResultDTO = {
+    // create
+    const newCategory = Category.create(categoryProps);
+    // Save
+    const savedCategoy = this.categoryRepository.CreateAsync(newCategory);
+
+    // map to DTO
+
+    // return
+
+    const r: CreateCategoryResponse = {
       id: '123',
       name: 'name',
       description: 'descr',
@@ -30,9 +42,6 @@ export class CreateCategoryCommandHandler {
 
   // // validate
   // // sanitize
-  // const sanitizedRequest: CategoryProps = TextUtils.sanitizeObject(
-  //   request
-  // ) as CategoryProps;
 
   // // Create category
   // const n = Category.create(sanitizedRequest);
