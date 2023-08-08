@@ -11,7 +11,7 @@ export class DbConnection {
     try {
       mongoose.connect(this.connectionUrl);
       console.log('[db] Connected to mongoose database');
-    } catch (error: unknown) {
+    } catch (error: any) {
       console.error(`[db] Could not connect to mongoose. ${error}`);
     }
   }

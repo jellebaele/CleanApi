@@ -9,7 +9,7 @@ export default class TextUtils {
   }
 
   public static sanitizeObject<T>(object: object, exclude: string[] = []): T {
-    const sanitizedObject: { [key: string]: unknown } = {};
+    const sanitizedObject: { [key: string]: any } = {};
 
     for (const [key, value] of Object.entries(object)) {
       sanitizedObject[key] = exclude.includes(key)
