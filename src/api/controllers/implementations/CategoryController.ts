@@ -3,7 +3,6 @@ import { createCategoryHandler } from '../../../application/useCases/categories/
 import { BaseController } from '../BaseController';
 import { CreateCategoryResponse } from '../../../application/useCases/categories/commands/createCategory/CreateCategoryResultResponse';
 
-// Create BaseController
 export class CategoryController extends BaseController {
   public async createCategory(req: Request, res: Response) {
     const newCategory: CreateCategoryResponse | null =
