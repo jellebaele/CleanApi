@@ -1,4 +1,4 @@
-import { PersistenceCategoryMapper } from '../mappers/implementations/PersistenceCategoryMapper';
+import { PersistenceCategoryMapper } from '../mappers';
 import { CategoryModel } from '../models';
 import CategoryRepository from './implementations/CategoryRepository';
 
