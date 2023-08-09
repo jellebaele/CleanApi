@@ -1,5 +1,11 @@
 import { model, Schema } from 'mongoose';
 
+export interface CategoryDTO {
+  _id: string;
+  name: string;
+  description: string;
+}
+
 export interface CategoryDocument extends Document {
   _id: string;
   name: string;
