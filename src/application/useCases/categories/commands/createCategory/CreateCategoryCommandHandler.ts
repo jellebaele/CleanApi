@@ -2,7 +2,7 @@ import Category, {
   CategoryProps,
 } from '../../../../../domain/entities/Category';
 import ICategoryRepository from '../../../../contracts/persistence/ICategoryRepository';
-import { CategoryMapper } from '../../../../mappers/category/CategoryMapper';
+import { CategoryMapper } from '../../../../mappers';
 import TextUtils from '../../../../shared/utils/TextUtils';
 import { CreateCategoryCommand } from './CreateCategoryCommand';
 import { createCategoryCommandValidator } from './CreateCategoryCommandValidator';
@@ -12,9 +12,11 @@ import { CreateCategoryResponse } from './CreateCategoryResultResponse';
 // TODO General command class
 export class CreateCategoryCommandHandler {
   private categoryRepository: ICategoryRepository;
+  private readonly _mapper: CategoryMapper;
 
   constructor(categoryRepository: ICategoryRepository) {
     this.categoryRepository = categoryRepository;
+    this._mapper = new CategoryMapper();
   }
 
   public async handle(
@@ -29,7 +31,7 @@ export class CreateCategoryCommandHandler {
     const savedCategoy = await this.categoryRepository.CreateAsync(newCategory);
 
     const result =
-      CategoryMapper.toPresentation<CreateCategoryResponse>(savedCategoy);
+      this._mapper.toPresentation<CreateCategoryResponse>(savedCategoy);
 
     return result;
   }
