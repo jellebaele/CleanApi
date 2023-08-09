@@ -12,7 +12,7 @@ abstract class Entity<T> {
     this.uniqueEntityId = id ? id : new UniqueEntityId(uuidv4());
   }
 
-  public get id(): string | number {
+  public get _id(): string | number {
     return this.uniqueEntityId._id;
   }
 }
