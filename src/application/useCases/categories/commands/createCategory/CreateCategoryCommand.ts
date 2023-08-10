@@ -1,14 +1,6 @@
-// export class CreateCategoryCommand {
-//   name: string;
-//   description: string;
+import { ICommand } from '../../../../shared/models/ICommand';
 
-//   constructor(name: string, description: string) {
-//     this.name = name;
-//     this.description = description;
-//   }
-// }
-
-export interface CreateCategoryCommand {
+export interface CreateCategoryCommand extends ICommand {
   name: string;
   description: string;
 }
